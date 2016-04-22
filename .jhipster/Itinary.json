@@ -1,0 +1,45 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "driver",
+            "otherEntityName": "driver",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "lastName"
+        },
+        {
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "paths",
+            "otherEntityName": "path",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "namePath",
+            "ownerSide": true
+        },
+        {
+            "relationshipName": "passengers",
+            "otherEntityName": "passenger",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "firstName",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "pricePerSeat",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20160422094925",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "itinary",
+    "pagination": "pager"
+}

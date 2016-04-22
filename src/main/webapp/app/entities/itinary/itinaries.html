@@ -1,0 +1,70 @@
+<div>
+    <h2 translate="carpoolingCsid2016App.itinary.home.title">Itinaries</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="itinary.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="carpoolingCsid2016App.itinary.home.createLabel">
+                        Create new Itinary
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startDate"><span translate="carpoolingCsid2016App.itinary.startDate">StartDate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pricePerSeat"><span translate="carpoolingCsid2016App.itinary.pricePerSeat">PricePerSeat</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="driverLastName"><span translate="carpoolingCsid2016App.itinary.driver">driver</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="carId"><span translate="carpoolingCsid2016App.itinary.car">car</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="itinary in vm.itinaries track by itinary.id">
+                    <td><a ui-sref="itinary-detail({id:itinary.id})">{{itinary.id}}</a></td>
+                        <td>{{itinary.startDate | date:'mediumDate'}}</td>
+                    <td>{{itinary.pricePerSeat}}</td>
+                    <td>
+                        <a ui-sref="driver-detail({id:itinary.driverId})">{{itinary.driverLastName}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="car-detail({id:itinary.carId})">{{itinary.carId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="itinary-detail({id:itinary.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="itinary.edit({id:itinary.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="itinary.delete({id:itinary.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myItinaryLabel" translate="carpoolingCsid2016App.itinary.home.createOrEditLabel">Create or edit a Itinary</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.itinary.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="carpoolingCsid2016App.itinary.startDate" for="field_startDate">StartDate</label>
+                <div class="input-group">
+                    <input id="field_startDate" type="text" class="form-control" name="startDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.itinary.startDate" is-open="vm.datePickerOpenStatus.startDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="carpoolingCsid2016App.itinary.pricePerSeat" for="field_pricePerSeat">PricePerSeat</label>
+            <input type="number" class="form-control" name="pricePerSeat" id="field_pricePerSeat"
+                    ng-model="vm.itinary.pricePerSeat"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="carpoolingCsid2016App.itinary.driver" for="field_driver">driver</label>
+            <select class="form-control" id="field_driver" name="driver" ng-model="vm.itinary.driverId" ng-options="driver.id as driver.lastName for driver in vm.drivers">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="carpoolingCsid2016App.itinary.car" for="field_car">car</label>
+            <select class="form-control" id="field_car" name="car" ng-model="vm.itinary.carId" ng-options="car.id as car.id for car in vm.cars">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="carpoolingCsid2016App.itinary.paths" for="field_paths">paths</label>
+            <select class="form-control" id="field_paths" multiple name="paths" ng-model="vm.itinary.pathss" ng-options="path as path.namePath for path in vm.paths track by path.id"></select>
+        </div>
+        <div class="form-group">
+            <label translate="carpoolingCsid2016App.itinary.passengers" for="field_passengers">passengers</label>
+            <select class="form-control" id="field_passengers" multiple name="passengers" ng-model="vm.itinary.passengerss" ng-options="passenger as passenger.firstName for passenger in vm.passengers track by passenger.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

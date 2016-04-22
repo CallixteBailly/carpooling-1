@@ -14,6 +14,7 @@
                 "carType": "CarType",
                 "path": "Path",
                 "car": "Car",
+                "itinary": "Itinary",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

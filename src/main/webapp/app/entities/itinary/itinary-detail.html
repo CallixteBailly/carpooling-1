@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span translate="carpoolingCsid2016App.itinary.detail.title">Itinary</span> {{vm.itinary.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="carpoolingCsid2016App.itinary.startDate">StartDate</dt></dt>
+        <dd>
+            <span>{{vm.itinary.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="carpoolingCsid2016App.itinary.pricePerSeat">PricePerSeat</dt></dt>
+        <dd>
+            <span>{{vm.itinary.pricePerSeat}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="carpoolingCsid2016App.itinary.driver">driver</span></dt>
+        <dd>
+            <a ui-sref="driver-detail({id:vm.itinary.driverId})">{{vm.itinary.driverLastName}}</a>
+        </dd>
+        <hr>
+        <dt><span translate="carpoolingCsid2016App.itinary.car">car</span></dt>
+        <dd>
+            <a ui-sref="car-detail({id:vm.itinary.carId})">{{vm.itinary.carId}}</a>
+        </dd>
+        <hr>
+        <dt><span translate="carpoolingCsid2016App.itinary.paths">paths</span></dt>
+        <dd>
+            <span ng-repeat="paths in vm.itinary.pathss">
+                <a ui-sref="path-detail({id: {{paths.id}}})">{{paths.namePath}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <hr>
+        <dt><span translate="carpoolingCsid2016App.itinary.passengers">passengers</span></dt>
+        <dd>
+            <span ng-repeat="passengers in vm.itinary.passengerss">
+                <a ui-sref="passenger-detail({id: {{passengers.id}}})">{{passengers.firstName}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

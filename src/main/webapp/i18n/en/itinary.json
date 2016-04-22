@@ -1,0 +1,27 @@
+{
+    "carpoolingCsid2016App": {
+        "itinary" : {
+            "home": {
+                "title": "Itinaries",
+                "createLabel": "Create a new Itinary",
+                "createOrEditLabel": "Create or edit a Itinary",
+                "search": "Search for Itinary"
+            },
+            "created": "A new Itinary is created with identifier {{ param }}",
+            "updated": "A Itinary is updated with identifier {{ param }}",
+            "deleted": "A Itinary is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Itinary {{ id }}?"
+            },
+            "detail": {
+                "title": "Itinary"
+            },
+            "startDate": "StartDate",
+            "pricePerSeat": "PricePerSeat",
+            "driver": "Driver",
+            "car": "Car",
+            "paths": "Paths",
+            "passengers": "Passengers"
+        }
+    }
+}
