@@ -13,6 +13,7 @@
                 "carBrand": "CarBrand",
                 "carType": "CarType",
                 "path": "Path",
+                "car": "Car",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
