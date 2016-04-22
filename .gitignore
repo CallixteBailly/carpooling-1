@@ -73,6 +73,7 @@ local.properties
 *.jar
 *.war
 *.ear
+*.db
 
 ######################
 # Windows
