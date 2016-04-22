@@ -10,6 +10,8 @@
                 "location": "Location",
                 "passenger": "Passenger",
                 "driver": "Driver",
+                "carBrand": "CarBrand",
+                "carType": "CarType",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
