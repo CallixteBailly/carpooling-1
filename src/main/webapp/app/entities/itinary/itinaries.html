@@ -1,42 +1,84 @@
 <div>
     <h2 translate="carpoolingCsid2016App.itinary.home.title">Itinaries</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="itinary.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  translate="carpoolingCsid2016App.itinary.home.createLabel">
-                        Create new Itinary
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
     <br/>
-    <div class="table-responsive">
+<div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Depart</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="text" ng-model="dep">
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Date / heure</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="text" placeholder="YYYY/MM/DD" ng-model="dateStart">
+                            </div>
+                                
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Arrivee</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="text" ng-model="ariv">
+                            </div>
+
+                            <div class="col-lg-2">
+                                <label>Date / heure</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <input type="text" placeholder="YYYY/MM/DD" ng-model="dateEnd">
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- <div class="row"> 
+                            <div class="col-lg-2">
+                                <input type="button" class="btn btn-primary" value="Chercher"></input>
+                            </div>
+                        </div> -->  
+                    </div>
+                  </div>    
+    <div class="table-responsive">    
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                     <th jh-sort-by="startDate"><span translate="carpoolingCsid2016App.itinary.startDate">StartDate</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="pricePerSeat"><span translate="carpoolingCsid2016App.itinary.pricePerSeat">PricePerSeat</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="driverLastName"><span translate="carpoolingCsid2016App.itinary.driver">driver</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="carId"><span translate="carpoolingCsid2016App.itinary.car">car</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="carId"><span translate="">search path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="carId"><span translate="carpoolingCsid2016App.itinary.paths">paths</span> <span class="glyphicon glyphicon-sort"></span></th>                    
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="itinary in vm.itinaries track by itinary.id">
-                    <td><a ui-sref="itinary-detail({id:itinary.id})">{{itinary.id}}</a></td>
-                        <td>{{itinary.startDate | date:'mediumDate'}}</td>
+                <tr ng-repeat="itinary in vm.itinaries | filter : dep | filter : ariv | filter : dateStart:'dd/MM/yyyy' track by itinary.id">
+                   <!-- <td><a ui-sref="itinary-detail({id:itinary.id})">{{itinary.id}}</a></td> -->
+                        <td>{{itinary.startDate | date:'yyyy-MM-dd'}}</td>
                     <td>{{itinary.pricePerSeat}}</td>
                     <td>
                         <a ui-sref="driver-detail({id:itinary.driverId})">{{itinary.driverLastName}}</a>
                     </td>
                     <td>
-                        <a ui-sref="car-detail({id:itinary.carId})">{{itinary.carId}}</a>
+                        <a ui-sref="car-detail({id:itinary.carId})">{{itinary.carId}}</a>                       
                     </td>
+                    <td>
+                        <span ng-repeat="paths in itinary.pathss | filter :{locationStartNameLocation: dep, locationEndNameLocation: ariv}">
+                            <a ui-sref="path-detail({id: {{paths.id}}})">{{paths.locationStartNameLocation}} - {{paths.locationEndNameLocation}}</a>
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="paths in itinary.pathss">
+                            <a ui-sref="path-detail({id: {{paths.id}}})">{{paths.locationStartNameLocation}} - {{paths.locationEndNameLocation}}</a>
+                        </span>
+                    </td>                                        
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
